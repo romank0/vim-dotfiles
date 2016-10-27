@@ -20,6 +20,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-markdown'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vsushkov/nerdtree-ack'
+Plugin 'sudar/vim-arduino-syntax'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
