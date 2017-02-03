@@ -57,6 +57,7 @@ set foldlevel=99            " don't fold by default
 set secure
 set exrc
 
+set wildmode=longest,list 
 " Ignore these files when completing
 set wildignore+=*.o,*.obj,.git,*.pyc
 set wildignore+=eggs/**
