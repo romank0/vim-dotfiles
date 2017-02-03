@@ -127,6 +127,7 @@ au FileType coffee setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 smart
 au FileType sh setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 smartindent
 au BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 au BufRead *.md set filetype=markdown
+au BufRead *.cpp,*.c,*.h set cindent
 au FileType markdown set tw=79
 " Don't let pyflakes use the quickfix window
 let g:pyflakes_use_quickfix = 0
