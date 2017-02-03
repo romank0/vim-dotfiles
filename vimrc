@@ -54,6 +54,8 @@ set shiftround              " rounds indent to a multiple of shiftwidth
 set matchpairs+=<:>         " show matching <> (html mainly) as well
 set foldmethod=indent       " allow us to fold on indents
 set foldlevel=99            " don't fold by default
+set secure
+set exrc
 
 " Ignore these files when completing
 set wildignore+=*.o,*.obj,.git,*.pyc
