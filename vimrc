@@ -64,7 +64,6 @@ set wildignore+=eggs/**
 set wildignore+=*.egg-info/**
 
 """" Messages, Info, Status
-set ls=2                    " allways show status line
 set vb t_vb=                " Disable all bells.  I hate ringing/flashing.
 set confirm                 " Y-N-C prompt if closing with unsaved changes.
 set showcmd                 " Show incomplete normal mode commands as I type.
