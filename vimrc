@@ -19,6 +19,8 @@ Plugin 'tpope/vim-markdown'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vsushkov/nerdtree-ack'
 Plugin 'sudar/vim-arduino-syntax'
+Plugin 'romank0/vim-bookmarks'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -157,3 +159,14 @@ autocmd BufReadPost *
                 \ endif
 
 set paste
+
+" Bookmarks
+let g:bookmark_no_default_key_mappings = 1
+let g:bookmark_highlight_lines = 1
+nmap <Leader><Leader> <Plug>BookmarkToggle
+nmap <Leader>i <Plug>BookmarkAnnotate
+nmap <Leader>a <Plug>BookmarkShowAll
+nmap <Leader>j <Plug>BookmarkNext
+nmap <Leader>k <Plug>BookmarkPrev
+nmap <Leader>c <Plug>BookmarkClear
+
