@@ -15,8 +15,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-scripts/Mark'
 Plugin 'tpope/vim-fugitive'
-Plugin 'sjl/splice.vim'
-Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-markdown'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vsushkov/nerdtree-ack'
