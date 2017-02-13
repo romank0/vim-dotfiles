@@ -59,9 +59,10 @@ set exrc
 
 set wildmode=longest,list 
 " Ignore these files when completing
-set wildignore+=*.o,*.obj,.git,*.pyc
+set wildignore+=*.o,*.obj,.git,*.pyc,*.jar,*.class
 set wildignore+=eggs/**
 set wildignore+=*.egg-info/**
+
 
 """" Messages, Info, Status
 set vb t_vb=                " Disable all bells.  I hate ringing/flashing.
