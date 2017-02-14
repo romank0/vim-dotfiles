@@ -110,6 +110,7 @@ let g:NERDTreeWinPos = "left"
 let g:NERDTreeWinSize = 36
 let g:NERDTreeCaseSensitiveSort = 1
 let g:NERDTreeChDirMode = 2
+let NERDTreeIgnore = ['\.pyc$']
 map <Leader>t :NERDTreeToggle <cr>
 map <Leader>f :NERDTreeFind <cr>
 
