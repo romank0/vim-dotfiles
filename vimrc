@@ -101,6 +101,8 @@ set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
 set diffopt=filler,iwhite   " ignore all whitespace and sync
 
+map <Leader>6 <C-^>
+
 
 " NERDTree
 let g:NERDChristmasTree = 1
