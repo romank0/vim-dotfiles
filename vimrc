@@ -72,8 +72,8 @@ set report=0                " : commands always print changed line count.
 set shortmess+=a            " Use [+]/[RO]/[w] for modified/readonly/written.
 set ruler                   " Show some info, even without statuslines.
 set laststatus=2            " Always show statusline, even if only 1 window.
-let &stl="%F%m%r%h%w\ [%{&ff}]\ [%Y]\ %P\ %=\ [a=\%03.3b]\ [h=\%02.2B]\ [%l,%v]"
-"let &stl="%F%m%r%h%w\ [%{&ff}]\ [%Y]\ %P\ %=%{fugitive#statusline()}\ [a=\%03.3b]\ [h=\%02.2B]\ [%l,%v]"
+"let &stl="%F%m%r%h%w\ [%{&ff}]\ [%Y]\ %P\ %=\ [a=\%03.3b]\ [h=\%02.2B]\ [%l,%v]"
+let &stl="%F%m%r%h%w\ [%{&ff}]\ [%Y]\ %P\ %=%{fugitive#statusline()}\ [a=\%03.3b]\ [h=\%02.2B]\ [%l,%v]"
 
 """" Reading/Writing
 set noautowrite             " Never write a file unless I request it.
