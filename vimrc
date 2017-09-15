@@ -2,7 +2,7 @@
 set nocompatible              " Don't be compatible with vi
 lan en_US
 
-filetype off 
+filetype off
 
 " run to install :PluginInstall
 " set the runtime path to include Vundle and initialize
@@ -15,31 +15,36 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-scripts/Mark'
 Plugin 'tpope/vim-fugitive'
+Plugin 'junegunn/gv.vim'
 Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-unimpaired'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vsushkov/nerdtree-ack'
 Plugin 'sudar/vim-arduino-syntax'
 Plugin 'romank0/vim-bookmarks'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'Vimjas/vim-python-pep8-indent'
+Plugin 'will133/vim-dirdiff'
+Bundle 'yssl/QFEnter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
-
 let mapleader=","             " change the leader to be a comma vs slash
 let maplocalleader = "\\"
 
-syntax on                     " syntax highlighing
-filetype on                   " try to detect filetypes
-filetype plugin indent on     " enable loading indent file for filetype
-set number                    " Display line numbers
-set numberwidth=1             " using only 1 column (and 1 space) while possible
-set background=dark           " We are using dark background in vim
-set title                     " show title in console title bar
-set wildmenu                  " Menu completion in command mode on <Tab>
+syntax on                   " syntax highlighing
+filetype on                 " try to detect filetypes
+filetype plugin indent on   " enable loading indent file for filetype
+set number                  " Display line numbers
+set numberwidth=1           " using only 1 column (and 1 space) while possible
+set background=dark         " We are using dark background in vim
+set title                   " show title in console title bar
+set wildmenu                " Menu completion in command mode on <Tab>
 set autoindent              " always set autoindenting on
 set smartindent             " use smart indent if there is no indent file
-set tabstop=4               " <tab> inserts 4 spaces 
+set tabstop=4               " <tab> inserts 4 spaces
 set shiftwidth=4            " but an indent level is 2 spaces wide.
 set softtabstop=4           " <BS> over an autoindent deletes both spaces.
 set expandtab               " Use spaces, not tabs, for autoindent/tab key.
@@ -57,11 +62,14 @@ set foldlevel=99            " don't fold by default
 set secure
 set exrc
 
-set wildmode=longest,list 
+set wildmode=longest,list
 " Ignore these files when completing
 set wildignore+=*.o,*.obj,.git,*.pyc,*.jar,*.class
 set wildignore+=eggs/**
 set wildignore+=*.egg-info/**
+set wildignore+=.git/**
+set wildignore+=.idea/**
+set wildignore+=.envs/**
 
 
 """" Messages, Info, Status
@@ -96,18 +104,19 @@ set listchars=tab:>-,eol:$,trail:-,precedes:<,extends:>
 """ Searching and Patterns
 set ignorecase              " Default to using case insensitive searches,
 set smartcase               " unless uppercase letters are used in the regex.
-set smarttab                " Handle tabs more intelligently 
+set smarttab                " Handle tabs more intelligently
 set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
 set diffopt=filler,iwhite   " ignore all whitespace and sync
 
 map <Leader>6 <C-^>
-
+map [op :set paste<CR>
+map ]op :set nopaste<CR>
 
 " NERDTree
 let g:NERDChristmasTree = 1
 let g:NERDTreeWinPos = "left"
-let g:NERDTreeWinSize = 36
+let g:NERDTreeWinSize = 60
 let g:NERDTreeCaseSensitiveSort = 1
 let g:NERDTreeChDirMode = 2
 let NERDTreeIgnore = ['\.pyc$']
@@ -125,7 +134,7 @@ map <leader>gl :Glog
 " Python
 "au BufRead *.py compiler nose
 "au FileType python set omnifunc=pythoncomplete#Complete
-au FileType python setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+"au FileType python setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 au FileType coffee setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 au FileType sh setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 smartindent
 au BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
@@ -134,6 +143,7 @@ au BufRead *.cpp,*.c,*.h set cindent
 au FileType markdown set tw=79
 " Don't let pyflakes use the quickfix window
 let g:pyflakes_use_quickfix = 0
+let python_highlight_all = 1
 
 " Add the virtualenv's site-packages to vim path
 if has('python')
@@ -165,8 +175,6 @@ autocmd BufReadPost *
                 \       endif|
                 \ endif
 
-set paste
-
 " Bookmarks
 let g:bookmark_no_default_key_mappings = 1
 let g:bookmark_highlight_lines = 1
@@ -177,3 +185,34 @@ nmap <Leader>j <Plug>BookmarkNext
 nmap <Leader>k <Plug>BookmarkPrev
 nmap <Leader>c <Plug>BookmarkClear
 
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+
+let g:airline_mode_map = {
+    \ '__' : '-',
+    \ 'n'  : 'N',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'c'  : 'C',
+    \ 'v'  : 'V',
+    \ 'V'  : 'V',
+    \ '' : 'V',
+    \ 's'  : 'S',
+    \ 'S'  : 'S',
+    \ '' : 'S',
+    \ }
+let g:airline_section_y='%P'
+let g:airline_section_x=''
+let g:airline_section_a=''
+let g:airline_section_z='%l/%L,%v'
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline#extensions#wordcount#filetypes='[]'
+
+if executable('rg')
+  set grepprg=rg\ -n\ --no-heading\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+  let g:ctrlp_cmd = 'CtrlPMixed'
+endif
+
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
