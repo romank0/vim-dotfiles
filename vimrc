@@ -18,7 +18,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'junegunn/gv.vim'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'scrooloose/nerdtree'
+Plugin 'preservim/nerdtree'
 Plugin 'vsushkov/nerdtree-ack'
 Plugin 'sudar/vim-arduino-syntax'
 Plugin 'romank0/vim-bookmarks'
@@ -119,7 +119,7 @@ let g:NERDTreeWinPos = "left"
 let g:NERDTreeWinSize = 60
 let g:NERDTreeCaseSensitiveSort = 1
 let g:NERDTreeChDirMode = 2
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 map <Leader>t :NERDTreeToggle <cr>
 map <Leader>f :NERDTreeFind <cr>
 
