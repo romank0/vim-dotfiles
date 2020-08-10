@@ -245,7 +245,7 @@ if executable('rg')
   set grepprg=rg\ -n\ --no-heading\ --color=never
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
-  let g:ctrlp_cmd = 'CtrlPMixed'
+  let g:ctrlp_cmd = 'CtrlPLastMode'
 endif
 
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
