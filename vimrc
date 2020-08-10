@@ -28,8 +28,11 @@ Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'will133/vim-dirdiff'
 Plugin 'leafgarland/typescript-vim'
 Bundle 'yssl/QFEnter'
+Plugin 'tpope/vim-dispatch'
+"Plugin 'janko-m/vim-test'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'alfredodeza/pytest.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -134,6 +137,16 @@ map <leader>gc :Gcommit<cr>
 map <leader>gb :Gblame<cr>
 map <leader>gl :Glog
 
+" vim-test
+"let test#strategy = "dispatch"
+"map <Leader>xt :TestFile<cr>
+"map <Leader>xr :TestLast<cr>
+"
+
+" pytest
+map <Leader>xt :Pytest project verbose<cr>
+map <Leader>xn :Pytest next<cr>
+
 " Python
 "au BufRead *.py compiler nose
 "au FileType python set omnifunc=pythoncomplete#Complete
@@ -159,7 +172,7 @@ if 'VIRTUAL_ENV' in os.environ:
     project_base_dir = os.environ['VIRTUAL_ENV']
     sys.path.insert(0, project_base_dir)
     activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    execfile(activate_this, dict(__file__=activate_this))
+    #execfile(activate_this, dict(__file__=activate_this))
 EOF
 endif
 
