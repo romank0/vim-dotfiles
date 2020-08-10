@@ -32,6 +32,7 @@ Plugin 'tpope/vim-dispatch'
 "Plugin 'janko-m/vim-test'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'eshion/vim-sync'
 Plugin 'alfredodeza/pytest.vim'
 
 " All of your Plugins must be added before the following line
