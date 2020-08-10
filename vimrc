@@ -26,7 +26,10 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'will133/vim-dirdiff'
+Plugin 'leafgarland/typescript-vim'
 Bundle 'yssl/QFEnter'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -134,8 +137,9 @@ map <leader>gl :Glog
 " Python
 "au BufRead *.py compiler nose
 "au FileType python set omnifunc=pythoncomplete#Complete
-"au FileType python setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-au FileType coffee setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+"au FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+au FileType coffee setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+au FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 smartindent cinwords=if,elif,else,for,while,try,except,finally errorformat=%.%#\ at\ %.%#(%f:%l:%c),%-G%.%#
 au FileType sh setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 smartindent
 au BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 au BufRead *.md set filetype=markdown
