@@ -34,6 +34,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'eshion/vim-sync'
 Plugin 'alfredodeza/pytest.vim'
+Plugin 'fratajczak/one-monokai-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -68,6 +69,13 @@ set foldmethod=indent       " allow us to fold on indents
 set foldlevel=99            " don't fold by default
 set secure
 set exrc
+set clipboard=unnamed
+colorscheme one-monokai
+" colorscheme default
+
+set termguicolors
+" enable if terminal does not support truecolor
+" set t_Co=256
 
 set wildmode=longest,list
 " Ignore these files when completing
