@@ -177,6 +177,7 @@ au FileType markdown set tw=79
 " Don't let pyflakes use the quickfix window
 let g:pyflakes_use_quickfix = 0
 let python_highlight_all = 1
+nmap <Leader>st Oimport ipdb; ipdb.set_trace()<Esc>:w<CR>
 
 augroup CursorLine
     au!
