@@ -68,8 +68,8 @@ set foldlevel=99            " don't fold by default
 set secure
 set exrc
 set clipboard=unnamed
-colorscheme one-monokai
-" colorscheme default
+" colorscheme one-monokai
+colorscheme default
 
 set termguicolors
 " enable if terminal does not support truecolor
