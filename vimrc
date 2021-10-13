@@ -259,23 +259,24 @@ if executable('rg')
 endif
 
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-nnoremap о j
-nnoremap ш i
-nnoremap р h
-nnoremap л k
-nnoremap д l
-nnoremap у e
-nnoremap ц w
-nnoremap н y
-nnoremap нн yy
-nnoremap з p
-nnoremap З P
-nnoremap к r
-nnoremap г u
-nnoremap ф a
-nnoremap с c
-nnoremap м v
-nnoremap и b
-nnoremap ч x
-nnoremap Ш I
-nnoremap Ф A
+"nnoremap о j
+"nnoremap ш i
+"nnoremap р h
+"nnoremap л k
+"nnoremap д l
+"nnoremap у e
+"nnoremap ц w
+"nnoremap н y
+"nnoremap нн yy
+"nnoremap з p
+"nnoremap З P
+"nnoremap к r
+"nnoremap г u
+"nnoremap ф a
+"nnoremap с c
+"nnoremap м v
+"nnoremap и b
+"nnoremap ч x
+"nnoremap Ш I
+"nnoremap Ф A
+set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
