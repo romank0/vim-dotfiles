@@ -84,6 +84,15 @@ set wildignore+=.git/**
 set wildignore+=.idea/**
 set wildignore+=.envs/**
 
+" Folds
+
+set foldcolumn=1
+highlight FoldColumn guibg=grey21
+highlight Folded guibg=grey21
+
+" set foldmethod=expr foldexpr foldlevel=0
+" let &foldexpr='getline(v:lnum)=~''BasicBinder'''
+
 
 """" Messages, Info, Status
 set vb t_vb=                " Disable all bells.  I hate ringing/flashing.
