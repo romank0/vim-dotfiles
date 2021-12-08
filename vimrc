@@ -83,12 +83,20 @@ set wildignore+=*.egg-info/**
 set wildignore+=.git/**
 set wildignore+=.idea/**
 set wildignore+=.envs/**
+set wildignore+=tags
 
 " Folds
 
 set foldcolumn=1
 highlight FoldColumn guibg=grey21
 highlight Folded guibg=grey21
+
+function! FoldHelp()
+    echo "FoldByExpr"
+    echo "let &foldexpr='getline(v:lnum)=~''BasicBinder'''"
+endfunction
+
+command FoldByExpr :set foldmethod=expr foldexpr foldlevel=0
 
 " set foldmethod=expr foldexpr foldlevel=0
 " let &foldexpr='getline(v:lnum)=~''BasicBinder'''
