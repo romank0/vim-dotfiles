@@ -260,6 +260,12 @@ if has("mac") || has("gui_macvim") || has("gui_mac")
   nnoremap <leader>cfd :let @*=expand("%:p:h")<CR>
 endif
 
+" HP42
+
+autocmd BufRead,BufNewFile *.41,*.42 :source ~/.vim/syntax/hp41.vim
+autocmd BufRead,BufNewFile *.41,*.42 :source ~/.vim/ftplugin/hp41.vim
+
+
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 
