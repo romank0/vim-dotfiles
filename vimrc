@@ -36,6 +36,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'eshion/vim-sync'
 Plugin 'alfredodeza/pytest.vim'
 Plugin 'fratajczak/one-monokai-vim'
+Plugin 'psf/black'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -176,20 +177,23 @@ map <Leader>xt :Pytest project verbose<cr>
 map <Leader>xn :Pytest next<cr>
 
 " Python
+autocmd BufWritePre *.py execute ':Black'
+"autocmd BufWritePre *.py :%!isort -
 "au BufRead *.py compiler nose
 "au FileType python set omnifunc=pythoncomplete#Complete
 "au FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-au FileType coffee setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-au FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 smartindent cinwords=if,elif,else,for,while,try,except,finally errorformat=%.%#\ at\ %.%#(%f:%l:%c),%-G%.%#
-au FileType sh setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 smartindent
 au BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-au BufRead *.md set filetype=markdown
-au BufRead *.cpp,*.c,*.h set cindent
-au FileType markdown set tw=79
 " Don't let pyflakes use the quickfix window
 let g:pyflakes_use_quickfix = 0
 let python_highlight_all = 1
 nmap <Leader>st Oimport ipdb; ipdb.set_trace()<Esc>:w<CR>
+
+au FileType coffee setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+au FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 smartindent cinwords=if,elif,else,for,while,try,except,finally errorformat=%.%#\ at\ %.%#(%f:%l:%c),%-G%.%#
+au FileType sh setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 smartindent
+au BufRead *.md set filetype=markdown
+au BufRead *.cpp,*.c,*.h set cindent
+au FileType markdown set tw=79
 
 augroup CursorLine
     au!
@@ -215,7 +219,7 @@ EOF
 endif
 
 if exists("&colorcolumn")
-    au FileType python set colorcolumn=80
+    au FileType python set colorcolumn=89
     au FileType markdown set colorcolumn=80
     au FileType java set colorcolumn=121
 endif
