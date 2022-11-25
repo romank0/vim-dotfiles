@@ -72,6 +72,7 @@ set exrc
 set clipboard=unnamed
 " colorscheme one-monokai
 colorscheme default
+"colorscheme solarized
 
 set termguicolors
 " enable if terminal does not support truecolor
@@ -271,28 +272,8 @@ if executable('rg')
   set grepprg=rg\ -n\ --no-heading\ --color=never
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
-  let g:ctrlp_cmd = 'CtrlPLastMode'
 endif
+let g:ctrlp_cmd = 'CtrlPLastMode'
 
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-"nnoremap о j
-"nnoremap ш i
-"nnoremap р h
-"nnoremap л k
-"nnoremap д l
-"nnoremap у e
-"nnoremap ц w
-"nnoremap н y
-"nnoremap нн yy
-"nnoremap з p
-"nnoremap З P
-"nnoremap к r
-"nnoremap г u
-"nnoremap ф a
-"nnoremap с c
-"nnoremap м v
-"nnoremap и b
-"nnoremap ч x
-"nnoremap Ш I
-"nnoremap Ф A
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
