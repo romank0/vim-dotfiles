@@ -15,6 +15,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-scripts/Mark'
 Plugin 'tpope/vim-fugitive'
+Plugin 'shumphrey/fugitive-gitlab.vim'
 Plugin 'junegunn/gv.vim'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-unimpaired'
@@ -154,12 +155,15 @@ map <Leader>t :NERDTreeToggle <cr>
 map <Leader>f :NERDTreeFind <cr>
 
 " Fugitive
-map <leader>gs :Gstatus<cr>
-map <leader>gw :Gwrite<cr>
+map <leader>gs :Git<cr>
+map <leader>gw :Git write<cr>
 map <leader>gd :Gdiff<cr>
-map <leader>gc :Gcommit<cr>
-map <leader>gb :Gblame<cr>
-map <leader>gl :Glog
+map <leader>gc :Git commit<cr>
+map <leader>gb :Git blame<cr>
+map <leader>gl :Git log
+
+" Fugitive-Gitlab
+let g:fugitive_gitlab_domains = ['https://newrepo.jikotech.com/']
 
 " vim-test
 "let test#strategy = "dispatch"
