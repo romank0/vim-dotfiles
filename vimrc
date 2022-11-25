@@ -239,11 +239,26 @@ autocmd BufReadPost *
 let g:bookmark_no_default_key_mappings = 1
 let g:bookmark_highlight_lines = 1
 nmap <Leader><Leader> <Plug>BookmarkToggle
-nmap <Leader>i <Plug>BookmarkAnnotate
-nmap <Leader>a <Plug>BookmarkShowAll
-nmap <Leader>j <Plug>BookmarkNext
-nmap <Leader>k <Plug>BookmarkPrev
-nmap <Leader>c <Plug>BookmarkClear
+nmap <Leader>bi <Plug>BookmarkAnnotate
+nmap <Leader>ba <Plug>BookmarkShowAll
+nmap <Leader>bj <Plug>BookmarkNext
+nmap <Leader>bk <Plug>BookmarkPrev
+nmap <Leader>bc <Plug>BookmarkClear
+
+" Filename
+if has("mac") || has("gui_macvim") || has("gui_mac")
+  " relative path  (src/foo.txt)
+  nnoremap <leader>cfr :let @*=expand("%")<CR>
+
+  " absolute path  (/something/src/foo.txt)
+  nnoremap <leader>cfa :let @*=expand("%:p")<CR>
+
+  " filename       (foo.txt)
+  nnoremap <leader>cff :let @*=expand("%:t")<CR>
+
+  " directory name (/something/src)
+  nnoremap <leader>cfd :let @*=expand("%:p:h")<CR>
+endif
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
