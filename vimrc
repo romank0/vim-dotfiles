@@ -326,7 +326,7 @@ set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁ
 
 
 function! CallChatGPTAPI(instructions) abort
-  let l:API_KEY = ""
+  let l:API_KEY = $CHAT_GPT_API_KEY
   let l:API_URL = "https://api.openai.com/v1/completions"
 
   let l:current_selection = getline("'<", "'>")
