@@ -36,7 +36,11 @@ Plugin 'mxw/vim-jsx'
 Plugin 'eshion/vim-sync'
 Plugin 'alfredodeza/pytest.vim'
 Plugin 'fratajczak/one-monokai-vim'
+"Plugin 'sansyrox/vim-python-virtualenv'
 Plugin 'psf/black'
+Plugin 'mbbill/undotree'
+Plugin 'joshbohde/vim-curl'
+Plugin 'puremourning/vimspector'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -125,10 +129,18 @@ set modelines=5             " they must be within the first or last 5 lines.
 set ffs=unix,dos,mac        " Try recognizing dos, unix, and mac line endings.
 
 "  backup options
-set backup
+set nobackup
 set backupdir=~/.backup
 set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
-set history=200
+set history=10000
+
+" undo options
+set undolevels=10000
+if has('persistent_undo')
+    set undodir=$HOME/.vimundo
+    set undofile 
+  endif 
+map <Leader>u :UndotreeToggle<CR>
 
 " displays tabs with :set list & displays when a line runs off-screen
 set listchars=tab:>-,eol:$,trail:-,precedes:<,extends:>
@@ -178,7 +190,10 @@ map <Leader>xt :Pytest project verbose<cr>
 map <Leader>xn :Pytest next<cr>
 
 " Python
-autocmd BufWritePre *.py execute ':Black'
+let g:black_use_virtualenv = 'true'
+augroup PythonBlack
+    autocmd BufWritePre *.py execute ':Black'
+augroup END
 "autocmd BufWritePre *.py :%!isort -
 "au BufRead *.py compiler nose
 "au FileType python set omnifunc=pythoncomplete#Complete
@@ -207,15 +222,18 @@ augroup END
 
 " Add the virtualenv's site-packages to vim path
 if has('python')
-py << EOF
-import os.path
-import sys
-import vim
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    sys.path.insert(0, project_base_dir)
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    #execfile(activate_this, dict(__file__=activate_this))
+python << EOF
+import os
+import subprocess
+
+if "VIRTUAL_ENV" in os.environ:
+    project_base_dir = os.environ["VIRTUAL_ENV"]
+    script = os.path.join(project_base_dir, "bin/activate")
+    pipe = subprocess.Popen(". %s; env" % script, stdout=subprocess.PIPE, shell=True)
+    output = pipe.communicate()[0].decode('utf8').splitlines()
+    env = dict((line.split("=", 1) for line in output))
+    os.environ.update(env)
+
 EOF
 endif
 
@@ -283,7 +301,7 @@ let g:airline_mode_map = {
     \ '' : 'S',
     \ }
 let g:airline_section_y='%P'
-let g:airline_section_x=''
+let g:airline_section_x='chr:%b[0x%B]'
 let g:airline_section_a=''
 let g:airline_section_z='%l/%L,%v'
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
@@ -294,7 +312,66 @@ if executable('rg')
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
 endif
-let g:ctrlp_cmd = 'CtrlPLastMode'
+let g:ctrlp_cmd = 'CtrlPMRUFiles'
 
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+
+
+
+function! CallChatGPTAPI(instructions) abort
+  let l:API_KEY = ""
+  let l:API_URL = "https://api.openai.com/v1/completions"
+
+  let l:current_selection = getline("'<", "'>")
+  let l:prompt = a:instructions . "\n" . join(l:current_selection, "\n")
+
+  let l:headers = {
+        \ 'Content-Type': 'application/json',
+        \ 'Authorization': 'Bearer ' . l:API_KEY
+        \ }
+
+  " let l:response = json_decode(curl#request('POST', l:API_URL, json_encode(l:data), l:headers))
+  " let l:result = l:response['choices'][0]['text']
+
+  " let l:response = py3eval("vim.call('ch_open', ['https://api.openai.com/v4/engines/davinci-codex/completions', 'block', {'headers': vim.eval('l:headers'), 'method': 'POST', 'payload': vim.eval('json_encode(l:data)') }])")
+  " let l:result = json_decode(l:response)['choices'][0]['text']
+  
+python3 << EOF
+import vim
+import json
+import http.client
+import urllib.parse
+from io import StringIO
+
+headers = vim.eval('l:headers')
+prompt = vim.eval('l:prompt')
+data = json.dumps({
+   'model': 'text-davinci-003',
+   'prompt': prompt,
+   'max_tokens': 300,
+   'temperature': 0.5,
+}).encode('utf-8')
+url = vim.eval('l:API_URL')
+
+parsed_url = urllib.parse.urlparse(url)
+ssl = False if parsed_url.scheme == 'http' else True
+connection = http.client.HTTPSConnection(parsed_url.netloc) if ssl else http.client.HTTPConnection(parsed_url.netloc)
+
+connection.request('POST', parsed_url.path, body=data, headers=headers)
+response = connection.getresponse()
+response_text = response.read().decode('utf-8')
+response_json = json.loads(response_text)
+result = response_json['choices'][0]['text']
+
+vim.command("new")
+vim.current.buffer.append(result.split('\n'), 0)
+EOF
+
+endfunction
+
+" vimspector
+let g:vimspector_enable_mappings = 'HUMAN'
+
+
+command! -nargs=1 ChatGPT :call CallChatGPTAPI(<q-args>)
