@@ -78,6 +78,12 @@ set clipboard=unnamed
 colorscheme default
 "colorscheme solarized
 
+" disables replacing yanked text
+vnoremap p "0p
+vnoremap P "0P
+vnoremap y "0y
+vnoremap d "0d
+
 set termguicolors
 " enable if terminal does not support truecolor
 " set t_Co=256
