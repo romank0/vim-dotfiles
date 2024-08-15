@@ -157,6 +157,7 @@ set incsearch               " Incrementally search while typing a /regex
 set diffopt=filler,iwhite   " ignore all whitespace and sync
 
 map <Leader>d "_d
+map <Leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 map <Leader>6 <C-^>
 map [op :set paste<CR>
