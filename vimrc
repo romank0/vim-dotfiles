@@ -75,6 +75,7 @@ set foldlevel=99            " don't fold by default
 set secure
 set exrc
 set clipboard=unnamed
+set scrolloff=8
 " colorscheme one-monokai
 colorscheme default
 "colorscheme solarized
