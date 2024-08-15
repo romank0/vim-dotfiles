@@ -80,12 +80,6 @@ set scrolloff=8
 colorscheme default
 "colorscheme solarized
 
-" disables replacing yanked text
-vnoremap p "0p
-vnoremap P "0P
-vnoremap y "0y
-vnoremap d "0d
-
 set termguicolors
 " enable if terminal does not support truecolor
 " set t_Co=256
@@ -161,6 +155,8 @@ set smarttab                " Handle tabs more intelligently
 set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
 set diffopt=filler,iwhite   " ignore all whitespace and sync
+
+map <Leader>d "_d
 
 map <Leader>6 <C-^>
 map [op :set paste<CR>
