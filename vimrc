@@ -42,6 +42,10 @@ Plugin 'psf/black'
 Plugin 'mbbill/undotree'
 Plugin 'joshbohde/vim-curl'
 Plugin 'puremourning/vimspector'
+" Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+if !has('nvim')
+    Plugin 'bfrg/vim-qf-diagnostics'
+endif
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -207,7 +211,30 @@ au BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\
 " Don't let pyflakes use the quickfix window
 let g:pyflakes_use_quickfix = 0
 let python_highlight_all = 1
-nmap <Leader>st Oimport ipdb; ipdb.set_trace()<Esc>:w<CR>
+nmap <Leader>sb Obreakpoint()<Esc>:w<CR>
+
+" This hides filename and position from the quickfix buffer
+au BufReadPost quickfix :call ConcealPath() 
+
+function ConcealPath()
+       syntax match ConcealedPath /^\([^|]*|\)\{2,2}/ conceal cchar=↭
+       setlocal conceallevel=2
+       setlocal concealcursor=nvic
+       setlocal nowrap 
+endfunction
+
+function UnconcealPath()
+       setlocal conceallevel=0
+       setlocal wrap
+endfunction
+
+
+augroup qf-diagnostics-user
+    autocmd!
+    autocmd QuickfixCmdPost  make  DiagnosticsPlace
+    autocmd QuickfixCmdPost lmake LDiagnosticsPlace
+augroup END
+
 
 au FileType coffee setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 au FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 smartindent cinwords=if,elif,else,for,while,try,except,finally errorformat=%.%#\ at\ %.%#(%f:%l:%c),%-G%.%#
