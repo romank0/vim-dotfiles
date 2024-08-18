@@ -252,6 +252,14 @@ augroup CursorLine
     "au WinLeave * setlocal nocursorline
 augroup END
 
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+augroup END
+
+nmap <Leader>or :set invrnu<CR>
+
 " Add the virtualenv's site-packages to vim path
 if has('python')
 python << EOF
