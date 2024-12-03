@@ -137,15 +137,25 @@ set ffs=unix,dos,mac        " Try recognizing dos, unix, and mac line endings.
 "  backup options
 set nobackup
 set backupdir=~/.backup
-set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
+set viminfo=%100,'100,/100,h,\"500,:100
 set history=10000
+
+if !has('nvim')
+  set viminfo+=n~/.viminfo
+else
+  set viminfo+=n~/.shada
+endif
 
 " undo options
 set undolevels=10000
 if has('persistent_undo')
-    set undodir=$HOME/.vimundo
+    if has('nvim')
+        set undodir=$HOME/.vimundo-nvim
+    else
+        set undodir=$HOME/.vimundo
+    endif
     set undofile 
-  endif 
+endif 
 map <Leader>u :UndotreeToggle<CR>
 
 " displays tabs with :set list & displays when a line runs off-screen
