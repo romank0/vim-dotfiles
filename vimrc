@@ -358,7 +358,7 @@ let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#wordcount#filetypes='[]'
 
 if executable('rg')
-  set grepprg=rg\ -n\ --no-heading\ --color=never
+  set grepprg=rg\ -n\ --no-heading\ --color=never\ --hidden
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
 endif
