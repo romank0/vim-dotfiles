@@ -223,9 +223,6 @@ let g:pyflakes_use_quickfix = 0
 let python_highlight_all = 1
 nmap <Leader>sb Obreakpoint()<Esc>:w<CR>
 
-" This hides filename and position from the quickfix buffer
-au BufReadPost quickfix :call ConcealPath() 
-
 function ConcealPath()
        syntax match ConcealedPath /^\([^|]*|\)\{2,2}/ conceal cchar=↭
        setlocal conceallevel=2
@@ -238,6 +235,8 @@ function UnconcealPath()
        setlocal wrap
 endfunction
 
+nmap <Leader>oqc :copen<CR>:call ConcealPath()<CR>
+nmap <Leader>oqu :copen<CR>:call UnconcealPath()<CR>
 
 augroup qf-diagnostics-user
     autocmd!
