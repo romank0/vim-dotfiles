@@ -96,7 +96,7 @@ set wildignore+=*.egg-info/**
 set wildignore+=.git/**
 set wildignore+=.idea/**
 set wildignore+=.envs/**
-set wildignore+=tags
+set wildignore+=tags*
 
 " Folds
 
