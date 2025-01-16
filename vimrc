@@ -43,7 +43,7 @@ Plugin 'mbbill/undotree'
 Plugin 'joshbohde/vim-curl'
 Plugin 'puremourning/vimspector'
 " Plugin 'neoclide/coc.nvim', {'branch': 'release'}
-if !has('nvim')
+if !has('nvim') && v:version >= 900
     Plugin 'bfrg/vim-qf-diagnostics'
 endif
 
@@ -84,6 +84,7 @@ set scrolloff=8
 colorscheme default
 "colorscheme solarized
 
+set background=dark
 set termguicolors
 " enable if terminal does not support truecolor
 " set t_Co=256
