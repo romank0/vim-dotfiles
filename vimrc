@@ -38,7 +38,8 @@ Plugin 'alfredodeza/pytest.vim'
 Plugin 'fratajczak/one-monokai-vim'
 "Plugin 'sansyrox/vim-python-virtualenv'
 Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'psf/black'
+"Plugin 'psf/black'
+Plugin 'dense-analysis/ale'
 Plugin 'mbbill/undotree'
 Plugin 'joshbohde/vim-curl'
 Plugin 'puremourning/vimspector'
@@ -101,7 +102,7 @@ set wildignore+=tags*
 
 " Folds
 
-set foldcolumn=1
+" set foldcolumn=1
 highlight FoldColumn guibg=grey21
 highlight Folded guibg=grey21
 
@@ -210,10 +211,19 @@ map <Leader>xt :Pytest project verbose<cr>
 map <Leader>xn :Pytest next<cr>
 
 " Python
-let g:black_use_virtualenv = 'true'
-augroup PythonBlack
-    autocmd BufWritePre *.py execute ':Black'
-augroup END
+" let g:black_use_virtualenv = 'true'
+" augroup PythonBlack
+"    autocmd BufWritePre *.py execute ':Black'
+" augroup END
+
+let g:ale_fixers = {
+\   'python': ['ruff_format'],
+\}
+let g:ale_linters = {
+\   'python': ['ruff'],
+\}
+let g:ale_fix_on_save = 1
+
 "autocmd BufWritePre *.py :%!isort -
 "au BufRead *.py compiler nose
 "au FileType python set omnifunc=pythoncomplete#Complete
