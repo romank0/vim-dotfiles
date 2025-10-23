@@ -217,14 +217,17 @@ map <Leader>xn :Pytest next<cr>
 " augroup END
 
 let g:ale_fixers = {
-\   'python': ['ruff_format'],
+\   'python': ['ruff', 'ruff_format', 'trim_whitespace'],
 \}
 let g:ale_linters = {
 \   'python': ['ruff'],
 \}
+
+let g:ale_python_ruff_options = ''
+let g:ale_python_ruff_format_options = '--select I,F,E,W,C90,N,UP,YTT,S,BLE,B,A,COM,C4,DTZ,ISC,ICN,G,PIE,T20,PYI,PT,Q,RSE,RET,SLF,SIM,TID,ARG,PD,PL,TRY,NPY,RUF'
+
 let g:ale_fix_on_save = 1
 
-"autocmd BufWritePre *.py :%!isort -
 "au BufRead *.py compiler nose
 "au FileType python set omnifunc=pythoncomplete#Complete
 "au FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
