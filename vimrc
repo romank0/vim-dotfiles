@@ -215,18 +215,34 @@ map <Leader>xn :Pytest next<cr>
 " augroup PythonBlack
 "    autocmd BufWritePre *.py execute ':Black'
 " augroup END
+"
 
-let g:ale_fixers = {
-\   'python': ['ruff', 'ruff_format', 'trim_whitespace'],
-\}
+function! RuffAll(buffer) abort
+  " Use ALE's root if available; fall back to the file's dir
+  let l:root = getbufvar(a:buffer, 'ale_root', expand('#'.a:buffer.':p:h'))
+  let l:ruff = shellescape(get(g:, 'ale_python_ruff_executable', 'ruff'))
+  return {
+  \ 'command': 'cd ' . fnameescape(l:root)
+  \            . ' && ' . l:ruff . ' check --fix %t'
+  \            . ' ; ' . l:ruff . ' format %t',
+  \ 'read_temporary_file': 1,
+  \}
+endfunction
+
+let g:ale_fixers = {'python': [function('RuffAll'), 'trim_whitespace']}
+
 let g:ale_linters = {
 \   'python': ['ruff'],
 \}
 
+" let g:ale_python_ruff_options = '--select I,F,E,W,C90,N,UP,YTT,S,BLE,B,A,COM,C4,DTZ,ISC,ICN,G,PIE,T20,PYI,PT,Q,RSE,RET,SLF,SIM,TID,ARG,PD,PL,TRY,NPY,RUF'
 let g:ale_python_ruff_options = ''
-let g:ale_python_ruff_format_options = '--select I,F,E,W,C90,N,UP,YTT,S,BLE,B,A,COM,C4,DTZ,ISC,ICN,G,PIE,T20,PYI,PT,Q,RSE,RET,SLF,SIM,TID,ARG,PD,PL,TRY,NPY,RUF'
+let g:ale_python_ruff_format_options = ''
 
 let g:ale_fix_on_save = 1
+
+nmap [of :let g:ale_fix_on_save = 0<CR>
+nmap ]of :let g:ale_fix_on_save = 1<CR>
 
 "au BufRead *.py compiler nose
 "au FileType python set omnifunc=pythoncomplete#Complete
