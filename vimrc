@@ -41,8 +41,9 @@ Plugin 'jmcantrell/vim-virtualenv'
 "Plugin 'psf/black'
 Plugin 'dense-analysis/ale'
 Plugin 'mbbill/undotree'
-Plugin 'joshbohde/vim-curl'
+"Plugin 'joshbohde/vim-curl'
 Plugin 'puremourning/vimspector'
+Plugin 'rafikdraoui/jj-diffconflicts'
 " Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 if !has('nvim') && v:version >= 900
     Plugin 'bfrg/vim-qf-diagnostics'
