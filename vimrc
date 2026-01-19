@@ -19,8 +19,10 @@ Plugin 'shumphrey/fugitive-gitlab.vim'
 Plugin 'junegunn/gv.vim'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'preservim/nerdtree'
-Plugin 'vsushkov/nerdtree-ack'
+if !exists('g:use_neo_tree') || !g:use_neo_tree
+    Plugin 'preservim/nerdtree'
+    Plugin 'vsushkov/nerdtree-ack'
+endif
 Plugin 'sudar/vim-arduino-syntax'
 Plugin 'romank0/vim-bookmarks'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -180,15 +182,17 @@ map <Leader>6 <C-^>
 map [op :set paste<CR>
 map ]op :set nopaste<CR>
 
-" NERDTree
-let g:NERDChristmasTree = 1
-let g:NERDTreeWinPos = "left"
-let g:NERDTreeWinSize = 60
-let g:NERDTreeCaseSensitiveSort = 1
-let g:NERDTreeChDirMode = 2
-let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-map <Leader>t :NERDTreeToggle <cr>
-map <Leader>f :NERDTreeFind <cr>
+if !exists('g:use_neo_tree') || !g:use_neo_tree
+    " NERDTree
+    let g:NERDChristmasTree = 1
+    let g:NERDTreeWinPos = "left"
+    let g:NERDTreeWinSize = 60
+    let g:NERDTreeCaseSensitiveSort = 1
+    let g:NERDTreeChDirMode = 2
+    let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+    map <Leader>t :NERDTreeToggle <cr>
+    map <Leader>f :NERDTreeFind <cr>
+endif
 
 " Fugitive
 map <leader>gs :Git<cr>

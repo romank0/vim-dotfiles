@@ -1,3 +1,4 @@
 bundle
 .netrwhist
 nerdtree/
+.claude/settings.local.json
