@@ -242,8 +242,8 @@ let g:ale_python_ruff_format_options = ''
 
 let g:ale_fix_on_save = 1
 
-nmap [of :let g:ale_fix_on_save = 0<CR>
-nmap ]of :let g:ale_fix_on_save = 1<CR>
+nmap ]of :let g:ale_fix_on_save = 0<CR>
+nmap [of :let g:ale_fix_on_save = 1<CR>
 
 "au BufRead *.py compiler nose
 "au FileType python set omnifunc=pythoncomplete#Complete
