@@ -1,6 +1,6 @@
 
 set nocompatible              " Don't be compatible with vi
-lan en_US
+lan en_US.UTF-8
 
 filetype off
 
