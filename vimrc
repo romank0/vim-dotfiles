@@ -202,6 +202,12 @@ map <leader>gc :Git commit<cr>
 map <leader>gb :Git blame<cr>
 map <leader>gl :Git log
 
+" JJ
+map <leader>jd :Jdiff<cr>
+map <leader>js :J status<cr>
+map <leader>jl :J<cr>
+map <leader>jj :J<cr>
+
 " Fugitive-Gitlab
 let g:fugitive_gitlab_domains = ['https://newrepo.jikotech.com/']
 
@@ -352,6 +358,9 @@ if has("mac") || has("gui_macvim") || has("gui_mac")
   " relative path  (src/foo.txt)
   nnoremap <leader>cfr :let @*=expand("%")<CR>
 
+  " relative path with line (src/foo.txt:23)
+  nnoremap <leader>cfl :let @*=expand("%") . ":" . line(".")<CR>
+
   " absolute path  (/something/src/foo.txt)
   nnoremap <leader>cfa :let @*=expand("%:p")<CR>
 
@@ -392,13 +401,15 @@ let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#wordcount#filetypes='[]'
 
 if executable('rg')
-  set grepprg=rg\ -n\ --no-heading\ --color=never\ --hidden
+  " set grepprg=rg\ -n\ --no-heading\ --color=never\ --hidden
+  set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --glob\ '!.git/*'
+  set grepformat=%f:%l:%c:%m
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
 endif
 let g:ctrlp_cmd = 'CtrlPMRUFiles'
 
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
 
